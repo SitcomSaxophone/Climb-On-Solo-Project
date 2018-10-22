@@ -22,6 +22,9 @@ class WorkoutList extends Component {
       url: '/api/workout'
     }).then(response => {
       console.log(response.data);
+      this.setState({
+        workouts: response.data,
+      })
     }).catch(error => {
       alert('Error making GET to server: ', error);
     });
@@ -34,7 +37,15 @@ class WorkoutList extends Component {
           Workout List
     </h2>
 
-
+      <ul>
+        {this.state.workouts.map(workout => (
+        <li key={workout.id}>
+          Workout: {workout.name} 
+          On Time: {workout.on_time}sec 
+          Off Time: {workout.off_time}sec
+          Rest Time: {workout.rest_time}sec
+        </li>))}
+      </ul>
       </div>
     )
   }

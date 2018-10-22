@@ -17,6 +17,9 @@ class SpecificWorkout extends Component {
             url: '/api/workout'
         }).then(response => {
             console.log(response.data);
+            this.setState({
+                workouts: response.data,
+            });
         }).catch(error => {
             alert('Error making GET to server: ', error);
         });
@@ -28,7 +31,7 @@ class SpecificWorkout extends Component {
                 <h2>
                     Specific Workout
                 </h2>
-
+                {JSON.stringify(this.state.workouts, null, 2)}
             </div>
         )
     }
