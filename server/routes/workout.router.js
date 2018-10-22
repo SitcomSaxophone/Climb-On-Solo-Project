@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
             workout.user_id
         ])
     .then(() => {
-
+        res.sendStatus(201);
     })
     .catch(error => {
         console.log('Error making POST to database: ', error);
