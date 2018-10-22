@@ -37,15 +37,16 @@ class WorkoutList extends Component {
           Workout List
     </h2>
 
-      <ul>
-        {this.state.workouts.map(workout => (
-        <li key={workout.id}>
-          Workout: {workout.name} 
-          On Time: {workout.on_time}sec 
-          Off Time: {workout.off_time}sec
-          Rest Time: {workout.rest_time}sec
-        </li>))}
-      </ul>
+        <form>
+          <input type="time" placeholder="Start Time" />
+          <input type="time" placeholder="End Time" />
+          <input type="number" placeholder="Workout ID" />
+          <input type="number" placeholder="Additional weight (optional)" />
+          <input type="text" placeholder="Route Rating (optional)" />
+          <textarea placeholder="Any additional comments?"/>
+          <input type="submit" />
+        </form>
+        {JSON.stringify(this.state.workouts)}
       </div>
     )
   }

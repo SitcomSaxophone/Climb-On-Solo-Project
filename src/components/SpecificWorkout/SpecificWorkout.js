@@ -31,7 +31,8 @@ class SpecificWorkout extends Component {
                 <h2>
                     Specific Workout
                 </h2>
-                {JSON.stringify(this.state.workouts, null, 2)}
+
+                
             </div>
         )
     }
