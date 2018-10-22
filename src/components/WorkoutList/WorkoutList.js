@@ -10,6 +10,15 @@ class WorkoutList extends Component {
 
   state = {
     workouts: [],
+    newWorkout: {
+      workout_id: 0,
+      user_id: 0,
+      added_weight: 0,
+      route_rating: '',
+      comments: '',
+      start_time: '',
+      end_time: '',
+    }
   }
 
   componentDidMount() {
