@@ -6,12 +6,19 @@ import React, { Component } from 'react';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 class WorkoutList extends Component {
+
+  state = {
+    workouts: [],
+  }
+
   render() {
     return (
       <div>
         <h2>
           Workout List
     </h2>
+
+    
       </div>
     )
   }
