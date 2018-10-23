@@ -1,7 +1,7 @@
 const schedule = (state = [], action) => {
     switch(action.type) {
         case 'SET_SCHEDULE':
-            return action.payload;
+            return [...action.payload];
         default:
             return state;
     }

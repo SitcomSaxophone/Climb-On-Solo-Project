@@ -10,22 +10,23 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
-        this.getSchedule();
+        // this.getSchedule();
+        this.props.dispatch({type: 'FETCH_SCHEDULE', payload: this.props.user.id});
     }
 
-    getSchedule = () => {
-        axios({
-            method: 'GET',
-            url: '/api/schedule'
-        }).then(response => {
-            this.setState({
-                schedule: response.data,
-            });
-            console.log(this.state.schedule);
-        }).catch(error => {
-            alert('Error making GET to server: ', error);
-        });
-    }
+    // getSchedule = () => {
+    //     axios({
+    //         method: 'GET',
+    //         url: '/api/schedule'
+    //     }).then(response => {
+    //         this.setState({
+    //             schedule: response.data,
+    //         });
+    //         console.log(this.state.schedule);
+    //     }).catch(error => {
+    //         alert('Error making GET to server: ', error);
+    //     });
+    // }
 
     render() {
         
@@ -37,11 +38,16 @@ class Calendar extends Component {
                 </h2>
 
                 <ul>
-                    {this.state.schedule.map(date => <li key={date.id}>{date.start_date} {date.end_date}</li>)}
+                    {this.props.schedule.map(date => <li key={date.id}>{date.start_date} {date.end_date}</li>)}
                 </ul>
             </div>
         )
     }
 }
 
-export default connect()(Calendar);
+const mapStateToProps = state => ({
+    user: state.user,
+    schedule: state.schedule,
+})
+
+export default connect(mapStateToProps)(Calendar);
