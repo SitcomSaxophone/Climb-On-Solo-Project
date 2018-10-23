@@ -18,18 +18,18 @@ class Calendar extends Component {
             method: 'GET',
             url: '/api/schedule'
         }).then(response => {
-            console.log(response.data);
             this.setState({
                 schedule: response.data,
             });
-            
+            console.log(this.state.schedule);
         }).catch(error => {
             alert('Error making GET to server: ', error);
         });
     }
 
     render() {
-        this.state.schedule.map(date => moment(date.start_date).format('"dddd, MMMM Do YYYY, h:mm:ss a"'));
+        
+
         return (
             <div>
                 <h2>
