@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class Calendar extends Component {
 
@@ -21,12 +22,14 @@ class Calendar extends Component {
             this.setState({
                 schedule: response.data,
             });
+            
         }).catch(error => {
             alert('Error making GET to server: ', error);
         });
     }
 
     render() {
+        this.state.schedule.map(date => moment(date.start_date).format('"dddd, MMMM Do YYYY, h:mm:ss a"'));
         return (
             <div>
                 <h2>
