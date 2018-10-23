@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -9,7 +10,6 @@ import axios from 'axios';
 class WorkoutList extends Component {
 
   state = {
-    workouts: [],
     newWorkout: {
       workout_id: 0,
       user_id: 0,
@@ -22,21 +22,7 @@ class WorkoutList extends Component {
   }
 
   componentDidMount() {
-    this.getWorkouts();
-  }
-
-  getWorkouts = () => {
-    axios({
-      method: 'GET',
-      url: '/api/workout'
-    }).then(response => {
-      console.log(response.data);
-      this.setState({
-        workouts: response.data,
-      })
-    }).catch(error => {
-      alert('Error making GET to server: ', error);
-    });
+    this.props.dispatch({type: 'FETCH_WORKOUT'});
   }
 
   render() {
@@ -55,10 +41,14 @@ class WorkoutList extends Component {
           <textarea placeholder="Any additional comments?"/>
           <input type="submit" />
         </form>
-        {JSON.stringify(this.state.workouts)}
+        {JSON.stringify(this.props.workouts, null, 2)}
       </div>
     )
   }
 }
 
-export default WorkoutList;
+const mapStateToProps = state => ({
+  workouts: state.workout,
+})
+
+export default connect(mapStateToProps)(WorkoutList);

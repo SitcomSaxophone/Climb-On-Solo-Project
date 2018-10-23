@@ -3,7 +3,6 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 
 function* fetchSchedule(action) {
     try {
-        console.log(action.payload);
         const scheduleResponse = yield call(axios.get, '/api/schedule', {id: action.payload});
         yield put({ type: 'SET_SCHEDULE', payload: scheduleResponse.data });
     } catch (error) {
