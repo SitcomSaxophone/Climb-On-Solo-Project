@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+import moment from 'moment';
 
 class WorkoutList extends Component {
 
@@ -16,24 +12,29 @@ class WorkoutList extends Component {
       added_weight: 0,
       route_rating: '',
       comments: '',
+      start_time: this.props.newSchedule._startDate,
+      end_time: this.props.newSchedule._endDate,
+    },
+    newScheduleDate: {
+      date: new Date(),
       start_time: '',
       end_time: '',
     }
   }
 
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_WORKOUT'});
+    this.props.dispatch({ type: 'FETCH_WORKOUT' });
   }
 
   scheduleNewWorkout = params => event => {
     event.preventDefault();
-    // this.props.dispatch({type: 'SCHEDULE_WORKOUT', payload: this.state.newWorkout});
+    // this.props.dispatch({type: 'SCHEDULE_NEW_WORKOUT', payload: this.state.newWorkout});
     axios({
       method: 'POST',
       url: '/api/schedule',
       data: this.state.newWorkout,
     }).then(() => {
-      this.props.dispatch({type: 'FETCH_WORKOUT'});
+      this.props.dispatch({ type: 'FETCH_WORKOUT' });
     }).catch(error => {
       alert('Error making POST to server: ', error);
     });
@@ -41,8 +42,17 @@ class WorkoutList extends Component {
 
   handleChangeFor = property => event => {
     this.setState({
-      newWorkout:{
+      newWorkout: {
         ...this.state.newWorkout,
+        [property]: event.target.value,
+      }
+    });
+  }
+
+  handleDateChangeFor = property => event => {
+    this.setState({
+      newScheduleDate: {
+        ...this.state.newScheduleDate,
         [property]: event.target.value,
       }
     });
@@ -57,6 +67,14 @@ class WorkoutList extends Component {
     })
   }
 
+  handleNewDate = event => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'NEW_SCHEDULE_DATE',
+      payload: this.state.newScheduleDate,
+    })
+  }
+
   render() {
     return (
       <div>
@@ -65,37 +83,43 @@ class WorkoutList extends Component {
     </h2>
 
         <form onSubmit={this.scheduleNewWorkout()}>
-          <input 
-            type="time" 
-            placeholder="Start Time" 
-            onChange={this.handleChangeFor('start_time')}
+          <input
+            type="date"
+            onChange={this.handleDateChangeFor('date')}
+            value={this.state.date}
           />
-          <input 
-            type="time" 
-            placeholder="End Time" 
-            onChange={this.handleChangeFor('end_time')}
+          <input
+            type="time"
+            onChange={this.handleDateChangeFor('start_time')}
+            value={this.state.start_time}
+          />
+          <input
+            type="time"
+            onChange={this.handleDateChangeFor('end_time')}
+            onBlur={this.handleNewDate}
+            value={this.state.end_time}
           />
           <select onChange={this.handleSelectChange}>
             <option value="">--Choose a workout--</option>
             {this.props.workouts.map(workout => (
-            <option 
-              key={workout.id} 
-              value={workout.id}
-            >
-              {workout.name}
-            </option>))}
+              <option
+                key={workout.id}
+                value={workout.id}
+              >
+                {workout.name}
+              </option>))}
           </select>
-          <input 
-            type="number" 
-            placeholder="Additional weight (optional)" 
+          <input
+            type="number"
+            placeholder="Additional weight (optional)"
             onChange={this.handleChangeFor('added_weight')}
           />
-          <input 
-            type="text" 
-            placeholder="Route Rating (optional)" 
+          <input
+            type="text"
+            placeholder="Route Rating (optional)"
             onChange={this.handleChangeFor('route_rating')}
           />
-          <textarea 
+          <textarea
             placeholder="Any additional comments?"
             onChange={this.handleChangeFor('comments')}
           />
@@ -110,6 +134,7 @@ class WorkoutList extends Component {
 const mapStateToProps = state => ({
   user: state.user,
   workouts: state.workout,
+  newSchedule: state.newSchedule,
 })
 
 export default connect(mapStateToProps)(WorkoutList);

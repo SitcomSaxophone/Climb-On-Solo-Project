@@ -10,8 +10,13 @@ function* fetchSchedule(action) {
     }
 }
 
+function* scheduleNewWorkout(action) {
+
+}
+
 function* scheduleSaga() {
     yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
+    // yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
 }
 
 export default scheduleSaga;
