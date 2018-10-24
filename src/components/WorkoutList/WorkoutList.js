@@ -129,7 +129,6 @@ class WorkoutList extends Component {
           />
           <input type="submit" />
         </form>
-        {JSON.stringify(this.state, null, 2)}
       </div>
     )
   }
