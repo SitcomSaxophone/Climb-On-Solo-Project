@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import moment from 'moment';
 
 class WorkoutList extends Component {
 
@@ -12,8 +10,6 @@ class WorkoutList extends Component {
       added_weight: 0,
       route_rating: '',
       comments: '',
-      start_time: this.props.newSchedule._startDate,
-      end_time: this.props.newSchedule._endDate,
     },
     newScheduleDate: {
       date: new Date(),
@@ -22,21 +18,29 @@ class WorkoutList extends Component {
     }
   }
 
+  // componentWillReceiveProps() {
+  //   this.setState({
+  //     newWorkout: {
+  //       ...this.state.newWorkout,
+  //       start_time: this.props.newSchedule.startDate,
+  //       end_time: this.props.newSchedule.endDate,
+  //     }
+  //   });
+  // }
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_WORKOUT' });
   }
 
-  scheduleNewWorkout = params => event => {
+  scheduleNewWorkout = () => event => {
     event.preventDefault();
-    // this.props.dispatch({type: 'SCHEDULE_NEW_WORKOUT', payload: this.state.newWorkout});
-    axios({
-      method: 'POST',
-      url: '/api/schedule',
-      data: this.state.newWorkout,
-    }).then(() => {
-      this.props.dispatch({ type: 'FETCH_WORKOUT' });
-    }).catch(error => {
-      alert('Error making POST to server: ', error);
+    this.props.dispatch({
+      type: 'SCHEDULE_NEW_WORKOUT', 
+      payload: {
+        ...this.state.newWorkout, 
+        start_time: this.props.newSchedule.startDate, 
+        end_time: this.props.newSchedule.endDate,
+      }
     });
   }
 
@@ -72,7 +76,7 @@ class WorkoutList extends Component {
     this.props.dispatch({
       type: 'NEW_SCHEDULE_DATE',
       payload: this.state.newScheduleDate,
-    })
+    });
   }
 
   render() {
@@ -91,13 +95,13 @@ class WorkoutList extends Component {
           <input
             type="time"
             onChange={this.handleDateChangeFor('start_time')}
-            value={this.state.start_time}
+            value={this.state.newScheduleDate.start_time}
           />
           <input
             type="time"
             onChange={this.handleDateChangeFor('end_time')}
             onBlur={this.handleNewDate}
-            value={this.state.end_time}
+            value={this.state.newScheduleDate.end_time}
           />
           <select onChange={this.handleSelectChange}>
             <option value="">--Choose a workout--</option>

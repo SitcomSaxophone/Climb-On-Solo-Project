@@ -11,12 +11,17 @@ function* fetchSchedule(action) {
 }
 
 function* scheduleNewWorkout(action) {
-
+    try {
+        yield call(axios.post, '/api/schedule', action.payload);
+        yield put({type: 'FETCH_PLANTS'});
+    } catch (error ) {
+        console.log('Error POSTing new schedule date: ', error);
+    }
 }
 
 function* scheduleSaga() {
     yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
-    // yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
+    yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
 }
 
 export default scheduleSaga;
