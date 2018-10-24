@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let workout = req.body;
+    console.log(workout);
     pool.query(`INSERT INTO "schedule"("start_date", "end_date", "added_weight", "route_rating", "comments", "workout_id", "user_id")
                 VALUES($1, $2, $3, $4, $5, $6, $7);`,
         [
