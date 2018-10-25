@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CalendarItem from '../CalendarItem/CalendarItem';
 
 class Calendar extends Component {
 
     componentDidMount() {
-        this.props.dispatch({type: 'FETCH_SCHEDULE', payload: this.props.user.id});
+        this.props.dispatch({ type: 'FETCH_SCHEDULE', payload: this.props.user.id });
     }
 
     render() {
-        
-
         return (
             <div>
                 <h2>
                     Calendar
                 </h2>
 
-                <ul>
-                    {this.props.schedule.map(date => <li key={date.id}>{date.start_date} {date.end_date} {date.name}</li>)}
-                </ul>
+
+                {this.props.schedule.map(date =>
+                    <CalendarItem
+                        key={date.id}
+                        date={date}
+                    />
+                )}
+                    {JSON.stringify(this.props.schedule, null, 2)}
+
             </div>
         )
     }
