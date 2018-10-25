@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 class WorkoutList extends Component {
 
@@ -25,10 +30,10 @@ class WorkoutList extends Component {
   scheduleNewWorkout = () => event => {
     event.preventDefault();
     this.props.dispatch({
-      type: 'SCHEDULE_NEW_WORKOUT', 
+      type: 'SCHEDULE_NEW_WORKOUT',
       payload: {
-        ...this.state.newWorkout, 
-        start_time: this.props.newSchedule.startDate, 
+        ...this.state.newWorkout,
+        start_time: this.props.newSchedule.startDate,
         end_time: this.props.newSchedule.endDate,
       }
     });
@@ -53,10 +58,11 @@ class WorkoutList extends Component {
   }
 
   handleSelectChange = event => {
-    this.setState({
+      this.setState({
       newWorkout: {
         ...this.state.newWorkout,
         workout_id: Number([...event.target.selectedOptions].filter(o => o.selected).map(o => o.value)),
+        // workout_id: Number(event.target.value),
       }
     })
   }
@@ -93,7 +99,7 @@ class WorkoutList extends Component {
             onBlur={this.handleNewDate}
             value={this.state.newScheduleDate.end_time}
           />
-          <select onChange={this.handleSelectChange}>
+          <Select native={true} onChange={this.handleSelectChange}>
             <option value="">--Choose a workout--</option>
             {this.props.workouts.map(workout => (
               <option
@@ -102,23 +108,31 @@ class WorkoutList extends Component {
               >
                 {workout.name}
               </option>))}
-          </select>
-          <input
+          </Select>
+          <Input
             type="number"
             placeholder="Additional weight (optional)"
             onChange={this.handleChangeFor('added_weight')}
+            variant="outlined"
           />
-          <input
+          <Input
             type="text"
             placeholder="Route Rating (optional)"
             onChange={this.handleChangeFor('route_rating')}
+            variant="outlined"
           />
-          <textarea
-            placeholder="Any additional comments?"
+          <TextField
+            autowidth="true"
+            label="Any additional comments?"
+            multiline
+            rowsMax="5"
+            margin="normal"
             onChange={this.handleChangeFor('comments')}
+            variant="outlined"
           />
-          <input type="submit" />
+          <Button type="submit" variant="outlined" color="primary">Submit</Button>
         </form>
+        {JSON.stringify(this.props.workouts, null, 2)}
       </div>
     )
   }

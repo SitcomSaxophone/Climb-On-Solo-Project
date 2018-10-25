@@ -5,7 +5,6 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
     pool.query(`SELECT * FROM "schedule"
                 RIGHT JOIN "workout" on "workout"."id"="schedule"."workout_id"
-                LEFT JOIN "user" on "user"."id"="schedule"."user_id"    
                 WHERE "user_id"=$1;`, [req.user.id])
     .then(results => {
         res.send(results.rows);
