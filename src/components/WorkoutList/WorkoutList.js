@@ -108,19 +108,19 @@ class WorkoutList extends Component {
                 {workout.name}
               </option>))}
           </Select>
-          <Input
+          {/* <Input
             type="number"
             placeholder="Additional weight (optional)"
             onChange={this.handleChangeFor('added_weight')}
             variant="outlined"
-          />
-          <Input
+          /> */}
+          {/* <Input
             type="text"
             placeholder="Route Rating (optional)"
             onChange={this.handleChangeFor('route_rating')}
             variant="outlined"
-          />
-          <TextField
+          /> */}
+          {/* <TextField
             autowidth="true"
             label="Any additional comments?"
             multiline
@@ -128,7 +128,7 @@ class WorkoutList extends Component {
             margin="normal"
             onChange={this.handleChangeFor('comments')}
             variant="outlined"
-          />
+          /> */}
           <Button type="submit" variant="outlined" color="primary">Submit</Button>
         </form>
         {JSON.stringify(this.props.workouts, null, 2)}

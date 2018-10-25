@@ -3,52 +3,72 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import moment from 'moment';
-import CardActionArea from '@material-ui/core/CardActionArea';
+// import moment from 'moment';
+// import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import { strict } from 'assert';
+// import Button from '@material-ui/core/Button';
+// import { strict } from 'assert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+import { Icon } from '@material-ui/core';
 
-const styles = theme => ({
-    expand: {
-        transform: 'rotate(0deg)',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-        marginLeft: 'auto',
-        [theme.breakpoints.up('sm')]: {
-            marginRight: -8,
-        },
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-});
+// const styles = theme => ({
+//     expand: {
+//         transform: 'rotate(0deg)',
+//         transition: theme.transitions.create('transform', {
+//             duration: theme.transitions.duration.shortest,
+//         }),
+//         marginLeft: 'auto',
+//         [theme.breakpoints.up('sm')]: {
+//             marginRight: -8,
+//         },
+//     },
+//     expandOpen: {
+//         transform: 'rotate(180deg)',
+//     },
+// });
 
 class CalendarItem extends Component {
 
-    state = { 
+    state = {
         expanded: false,
-        isComplete: false,
-        comments: '',
-     };
+        workout: {
+            isComplete: false,
+            comments: '',
+            added_wight: 0,
+            route_rating: '',
+        },
+    };
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
-    handleCheck = () => {
+    handleCheck = data => event => {
         this.setState({
-            isComplete: !this.state.isComplete,
+            workout: {
+                ...this.state.workout,
+                isComplete: !this.state.workout.isComplete,
+            }
         });
     }
+
+    handleChangeFor = property => event => {
+        
+    }
+
+    // handleDelete = data => event => {
+    //     event.preventDefault();
+
+    // }
 
     render() {
         return (
@@ -72,9 +92,25 @@ class CalendarItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography className="class-card-exercise">
+                            <Typography h3 className="class-card-exercise">
                                 {this.props.date.name}
                             </Typography>
+                            <Input
+                                autowidth="true"
+                                type="text"
+                                placeholder="Route Rating (optional)"
+                                // onChange={this.handleChangeFor('route_rating')}
+                                variant="outlined"
+                            />
+                            <br/>
+                            <Input
+                                autowidth="true"
+                                type="number"
+                                placeholder="Added weight (optional)"
+                                // onChange={this.handleChangeFor('added_weight')}
+                                variant="outlined"
+                            />
+                            <br/>
                             <TextField
                                 autowidth="true"
                                 label="Any additional comments?"
@@ -84,11 +120,26 @@ class CalendarItem extends Component {
                                 // onChange={this.handleChangeFor('comments')}
                                 variant="outlined"
                             />
-                            <Checkbox
-                                checked={this.state.isComplete}
-                                onChange={this.handleCheck}
-                                color="primary"
-                            />
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={this.state.workout.isComplete}
+                                            onChange={this.handleCheck(this.props.date)}
+                                            color="primary"
+                                        />
+                                    }
+                                    label="Complete Exercise"
+                                />
+                                <FormControlLabel
+                                    control={<IconButton>
+                                        <DeleteSharpIcon />
+                                    </IconButton>
+                                    }
+                                    label="Delete Exercise"
+                                />
+
+                            </FormGroup>
                         </CardContent>
                     </Collapse>
                 </Card>
