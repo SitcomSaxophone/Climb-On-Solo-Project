@@ -19,9 +19,19 @@ function* scheduleNewWorkout(action) {
     }
 }
 
+function* deleteScheduledWorkout(action) {
+    try {
+        yield call(axios.delete, '/api/schedule/:id', action.payload.id);
+        yield put({type: 'FETCH_PLANTS'});
+    } catch(error) {
+        console.log('Error making DELETE to server: ', error);
+    }
+}
+
 function* scheduleSaga() {
     yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
     yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
+    yield takeLatest('DELETE_WORKOUT', deleteScheduledWorkout);
 }
 
 export default scheduleSaga;
