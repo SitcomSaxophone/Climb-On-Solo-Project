@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let workout = req.body;
-    console.log(workout);
     pool.query(`INSERT INTO "schedule"("start_date", "end_date", "added_weight", "route_rating", "comments", "workout_id", "user_id")
                 VALUES($1, $2, $3, $4, $5, $6, $7);`,
         [
@@ -37,6 +36,18 @@ router.post('/', (req, res) => {
         res.sendStatus(500);
     });
 });
+
+router.delete('/:id', (req, res) => {
+    pool.query(`DELETE FROM "schedule"
+                WHERE "id"=$1;`, req.params.id)
+    .then(() => {
+        res.sendStatus(200);
+    })
+    .catch(error => {
+        console.log('Error making DELETE to database: ', error);
+        res.sendStatus(500);
+    });
+})
 
 
 module.exports = router;

@@ -46,7 +46,7 @@ class CalendarItem extends Component {
                 ...this.state.workout,
                 [property]: event.target.value,
             }
-        })
+        });
     }
 
     handleDelete = data => event => {
