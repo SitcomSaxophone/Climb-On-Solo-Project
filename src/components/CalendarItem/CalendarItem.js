@@ -3,38 +3,17 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-// import moment from 'moment';
-// import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Input from '@material-ui/core/Input';
-// import Button from '@material-ui/core/Button';
-// import { strict } from 'assert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
-import { Icon } from '@material-ui/core';
-
-// const styles = theme => ({
-//     expand: {
-//         transform: 'rotate(0deg)',
-//         transition: theme.transitions.create('transform', {
-//             duration: theme.transitions.duration.shortest,
-//         }),
-//         marginLeft: 'auto',
-//         [theme.breakpoints.up('sm')]: {
-//             marginRight: -8,
-//         },
-//     },
-//     expandOpen: {
-//         transform: 'rotate(180deg)',
-//     },
-// });
 
 class CalendarItem extends Component {
 
@@ -62,13 +41,18 @@ class CalendarItem extends Component {
     }
 
     handleChangeFor = property => event => {
-        
+        this.setState({
+            workout: {
+                ...this.state.workout,
+                [property]: event.target.value,
+            }
+        })
     }
 
-    // handleDelete = data => event => {
-    //     event.preventDefault();
-
-    // }
+    handleDelete = data => event => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'DELETE_WORKOUT' });
+    }
 
     render() {
         return (
@@ -92,7 +76,7 @@ class CalendarItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography h3 className="class-card-exercise">
+                            <Typography className="class-card-exercise" variant="h5">
                                 {this.props.date.name}
                             </Typography>
                             <Input
@@ -132,7 +116,7 @@ class CalendarItem extends Component {
                                     label="Complete Exercise"
                                 />
                                 <FormControlLabel
-                                    control={<IconButton>
+                                    control={<IconButton onClick={this.handleDelete(this.props.date)}>
                                         <DeleteSharpIcon />
                                     </IconButton>
                                     }

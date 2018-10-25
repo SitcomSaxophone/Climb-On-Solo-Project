@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CalendarItem from '../CalendarItem/CalendarItem';
 
+
 class Calendar extends Component {
 
     componentDidMount() {
@@ -14,15 +15,12 @@ class Calendar extends Component {
                 <h2>
                     Calendar
                 </h2>
-
-
                 {this.props.schedule.map(date =>
                     <CalendarItem
                         key={date.id}
                         date={date}
                     />
                 )}
-                    {JSON.stringify(this.props.schedule, null, 2)}
 
             </div>
         )

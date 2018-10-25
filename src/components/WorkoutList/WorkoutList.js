@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
-import TextField from '@material-ui/core/TextField';
+// import Input from '@material-ui/core/Input';
+// import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class WorkoutList extends Component {
@@ -11,9 +11,6 @@ class WorkoutList extends Component {
     newWorkout: {
       workout_id: 0,
       user_id: this.props.user.id,
-      added_weight: 0,
-      route_rating: '',
-      comments: '',
     },
     newScheduleDate: {
       date: new Date(),
@@ -38,14 +35,14 @@ class WorkoutList extends Component {
     });
   }
 
-  handleChangeFor = property => event => {
-    this.setState({
-      newWorkout: {
-        ...this.state.newWorkout,
-        [property]: event.target.value,
-      }
-    });
-  }
+  // handleChangeFor = property => event => {
+  //   this.setState({
+  //     newWorkout: {
+  //       ...this.state.newWorkout,
+  //       [property]: event.target.value,
+  //     }
+  //   });
+  // }
 
   handleDateChangeFor = property => event => {
     this.setState({
