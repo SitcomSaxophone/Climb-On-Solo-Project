@@ -13,6 +13,8 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { strict } from 'assert';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = theme => ({
     expand: {
@@ -32,11 +34,21 @@ const styles = theme => ({
 
 class CalendarItem extends Component {
 
-    state = { expanded: false };
+    state = { 
+        expanded: false,
+        isComplete: false,
+        comments: '',
+     };
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
+
+    handleCheck = () => {
+        this.setState({
+            isComplete: !this.state.isComplete,
+        });
+    }
 
     render() {
         return (
@@ -44,6 +56,7 @@ class CalendarItem extends Component {
                 <Card key={this.props.date.id}>
                     <CardHeader
                         title={this.props.date.start_date}
+                        subheader={this.props.date.end_date}
                     />
                     <CardActions>
                         <IconButton
@@ -59,6 +72,9 @@ class CalendarItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
+                            <Typography className="class-card-exercise">
+                                {this.props.date.name}
+                            </Typography>
                             <TextField
                                 autowidth="true"
                                 label="Any additional comments?"
@@ -67,6 +83,11 @@ class CalendarItem extends Component {
                                 margin="normal"
                                 // onChange={this.handleChangeFor('comments')}
                                 variant="outlined"
+                            />
+                            <Checkbox
+                                checked={this.state.isComplete}
+                                onChange={this.handleCheck}
+                                color="primary"
                             />
                         </CardContent>
                     </Collapse>
