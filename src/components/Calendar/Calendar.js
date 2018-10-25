@@ -17,7 +17,7 @@ class Calendar extends Component {
                 </h2>
 
                 <ul>
-                    {this.props.schedule.map(date => <li key={date.id}>{date.start_date} {date.end_date} {date.workout_id}</li>)}
+                    {this.props.schedule.map(date => <li key={date.id}>{date.start_date} {date.end_date} {date.name}</li>)}
                 </ul>
             </div>
         )

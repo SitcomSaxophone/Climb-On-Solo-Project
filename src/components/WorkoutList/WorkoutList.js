@@ -18,16 +18,6 @@ class WorkoutList extends Component {
     }
   }
 
-  // componentWillReceiveProps() {
-  //   this.setState({
-  //     newWorkout: {
-  //       ...this.state.newWorkout,
-  //       start_time: this.props.newSchedule.startDate,
-  //       end_time: this.props.newSchedule.endDate,
-  //     }
-  //   });
-  // }
-
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_WORKOUT' });
   }
