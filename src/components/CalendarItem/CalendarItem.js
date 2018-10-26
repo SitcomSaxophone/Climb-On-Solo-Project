@@ -22,7 +22,7 @@ class CalendarItem extends Component {
         workout: {
             isComplete: false,
             comments: '',
-            added_wight: 0,
+            added_weight: 0,
             route_rating: '',
         },
     };

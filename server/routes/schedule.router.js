@@ -20,9 +20,7 @@ FROM "schedule"
 JOIN "workout" on "workout"."id"="schedule"."workout_id"
 WHERE "user_id"=$1
 ORDER BY "schedule"."start_date";`, [req.user.id])
-    .then(results => {
-        res.send(results.rows);
-    })
+    .then(results => {res.send(results.rows)})
     .catch(error => {
         console.log('Error making GET to database: ', error);
         res.sendStatus(500);
@@ -42,9 +40,7 @@ router.post('/', (req, res) => {
             workout.workout_id,
             workout.user_id
         ])
-    .then(() => {
-        res.sendStatus(201);
-    })
+    .then(() => {res.sendStatus(201)})
     .catch(error => {
         console.log('Error making POST to database: ', error);
         res.sendStatus(500);
@@ -52,16 +48,34 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
-    console.log(req.query);
     pool.query(`DELETE FROM "schedule"
                 WHERE "id"=$1;`, [req.query.id])
-    .then(() => {
-        res.sendStatus(200);
-    })
+    .then(() => { res.sendStatus(200)})
     .catch(error => {
         console.log('Error making DELETE to database: ', error);
         res.sendStatus(500);
     });
+});
+
+router.put('/', (req, res) => {
+    pool.query(`UPDATE "schedule"
+                SET "added_weight"=$1, 
+                "route_rating"=$2, 
+                "comments"=$3, 
+                "iscomplete"=$4
+                WHERE "id"=$5;`, 
+                [
+                    req.query.added_weight, 
+                    req.query.route_rating, 
+                    req.query.comments, 
+                    req.query.isComplete, 
+                    req.query.id
+                ])
+    .then(() => {res.sendStatus(200)})
+    .catch(error => {
+        console.log('Error making UPDATE to database: ', error);
+        res.sendStatus(500);
+    })
 })
 
 
