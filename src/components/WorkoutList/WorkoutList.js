@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from '@material-ui/core/Select';
-// import Input from '@material-ui/core/Input';
-// import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class WorkoutList extends Component {
@@ -65,9 +63,9 @@ class WorkoutList extends Component {
   render() {
     return (
       <div>
-        <h2>
+        {/* <h2>
           Workout List
-    </h2>
+    </h2> */}
 
         <form onSubmit={this.scheduleNewWorkout()}>
           <input

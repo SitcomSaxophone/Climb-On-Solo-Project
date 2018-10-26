@@ -23,14 +23,14 @@ const Nav = (props) => (
           </Link>
         </>
       )}
-      {props.user.id && (
+      {/* {props.user.id && (
         <>
           <Link className="nav-link" to="/workouts">
             Workouts
           </Link>
           
         </>
-      )}
+      )} */}
       {/* {props.user.id && (
         <>
           <Link className="nav-link" to="/specifics">

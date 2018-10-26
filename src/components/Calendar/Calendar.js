@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CalendarItem from '../CalendarItem/CalendarItem';
+import WorkoutList from '../WorkoutList/WorkoutList';
 
 
 class Calendar extends Component {
@@ -15,6 +16,7 @@ class Calendar extends Component {
                 <h2>
                     Calendar
                 </h2>
+                <WorkoutList />
                 {this.props.schedule.map(date =>
                     <CalendarItem
                         key={date.id}
