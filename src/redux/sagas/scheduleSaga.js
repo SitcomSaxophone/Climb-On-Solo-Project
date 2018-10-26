@@ -28,10 +28,21 @@ function* deleteScheduledWorkout(action) {
     }
 }
 
+function* updateScheduledWorkout(action) {
+    try {
+        yield console.log(action.payload);
+        yield call(axios.put, '/api/schedule', action.payload );
+        yield put({ type: 'FETCH_SCHEDULE' });
+    } catch (error) {
+        console.log('Error making UPDATE to server: ', error);
+    }
+}
+
 function* scheduleSaga() {
     yield takeLatest('FETCH_SCHEDULE', fetchSchedule);
     yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
     yield takeLatest('DELETE_WORKOUT', deleteScheduledWorkout);
+    yield takeLatest('UPDATE_SCHEDULE', updateScheduledWorkout);
 }
 
 export default scheduleSaga;

@@ -21,7 +21,6 @@ const Nav = (props) => (
           <Link className="nav-link" to="/schedule">
             Calendar
           </Link>
-          {/* <LogOutButton className="nav-link"/> */}
         </>
       )}
       {props.user.id && (
@@ -29,17 +28,16 @@ const Nav = (props) => (
           <Link className="nav-link" to="/workouts">
             Workouts
           </Link>
-          {/* <LogOutButton className="nav-link"/> */}
+          
         </>
       )}
-      {props.user.id && (
+      {/* {props.user.id && (
         <>
           <Link className="nav-link" to="/specifics">
             Workout Specifics
           </Link>
-          {/* <LogOutButton className="nav-link"/> */}
         </>
-      )}
+      )} */}
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>

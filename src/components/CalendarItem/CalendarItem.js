@@ -57,7 +57,8 @@ class CalendarItem extends Component {
 
     handleSaveCompletedWorkout = data => event => {
         event.preventDefault();
-        console.log('clicked', data.id);
+        this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: {...this.state.workout, id: data.id}});
+        this.setState({workout:{added_weight: 0, route_rating: '', comments: ''}});
     }
 
     render() {
@@ -89,16 +90,18 @@ class CalendarItem extends Component {
                                 autowidth="true"
                                 type="text"
                                 placeholder="Route Rating (optional)"
-                                // onChange={this.handleChangeFor('route_rating')}
+                                onChange={this.handleChangeFor('route_rating')}
                                 variant="outlined"
+                                value={this.state.workout.route_rating}
                             />
                             <br />
                             <Input
                                 autowidth="true"
                                 type="number"
                                 placeholder="Added weight (optional)"
-                                // onChange={this.handleChangeFor('added_weight')}
+                                onChange={this.handleChangeFor('added_weight')}
                                 variant="outlined"
+                                value={this.state.workout.added_weight}
                             />
                             <br />
                             <TextField
@@ -107,8 +110,9 @@ class CalendarItem extends Component {
                                 multiline
                                 rowsMax="5"
                                 margin="normal"
-                                // onChange={this.handleChangeFor('comments')}
+                                onChange={this.handleChangeFor('comments')}
                                 variant="outlined"
+                                value={this.state.workout.comments}
                             />
                             <FormGroup>
                                 <FormControlLabel
@@ -136,8 +140,11 @@ class CalendarItem extends Component {
                                     }
                                     label="Delete Exercise"
                                 />
-
+                                    <Typography>{this.props.date.added_weight} additional lbs/kg</Typography>
+                                    <Typography paragraph>{this.props.date.route_rating}</Typography>
+                                    <Typography paragraph>{this.props.date.comments}</Typography>
                             </FormGroup>
+                           
                         </CardContent>
                     </Collapse>
                 </Card>

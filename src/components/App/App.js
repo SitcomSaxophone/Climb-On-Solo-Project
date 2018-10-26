@@ -9,7 +9,6 @@ import { CssBaseline } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -58,11 +57,11 @@ class App extends Component {
               path="/schedule"
               component={Calendar}
             />
-            <ProtectedRoute
+            {/* <ProtectedRoute
               exact
               path="/specifics"
               component={SpecificWorkout}
-            />
+            /> */}
             <ProtectedRoute
               exact
               path="/workouts"
@@ -71,7 +70,6 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
         </div>
       </Router>
     )

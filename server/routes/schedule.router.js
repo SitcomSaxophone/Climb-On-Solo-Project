@@ -65,17 +65,17 @@ router.put('/', (req, res) => {
                 "iscomplete"=$4
                 WHERE "id"=$5;`, 
                 [
-                    req.query.added_weight, 
-                    req.query.route_rating, 
-                    req.query.comments, 
-                    req.query.isComplete, 
-                    req.query.id
+                    req.body.added_weight, 
+                    req.body.route_rating, 
+                    req.body.comments, 
+                    req.body.isComplete, 
+                    req.body.id
                 ])
     .then(() => {res.sendStatus(200)})
     .catch(error => {
         console.log('Error making UPDATE to database: ', error);
         res.sendStatus(500);
-    })
+    });
 })
 
 
