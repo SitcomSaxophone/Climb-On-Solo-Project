@@ -23,7 +23,7 @@ class CalendarItem extends Component {
         workout: {
             isComplete: false,
             comments: '',
-            added_weight: null,
+            added_weight: 0,
             route_rating: '',
         },
     };
@@ -101,7 +101,6 @@ class CalendarItem extends Component {
                                 placeholder="Added weight (optional)"
                                 onChange={this.handleChangeFor('added_weight')}
                                 variant="outlined"
-                                value={this.state.workout.added_weight}
                             />
                             <br />
                             <TextField

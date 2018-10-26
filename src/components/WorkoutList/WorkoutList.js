@@ -35,15 +35,6 @@ class WorkoutList extends Component {
     });
   }
 
-  // handleChangeFor = property => event => {
-  //   this.setState({
-  //     newWorkout: {
-  //       ...this.state.newWorkout,
-  //       [property]: event.target.value,
-  //     }
-  //   });
-  // }
-
   handleDateChangeFor = property => event => {
     this.setState({
       newScheduleDate: {
@@ -105,27 +96,6 @@ class WorkoutList extends Component {
                 {workout.name}
               </option>))}
           </Select>
-          {/* <Input
-            type="number"
-            placeholder="Additional weight (optional)"
-            onChange={this.handleChangeFor('added_weight')}
-            variant="outlined"
-          /> */}
-          {/* <Input
-            type="text"
-            placeholder="Route Rating (optional)"
-            onChange={this.handleChangeFor('route_rating')}
-            variant="outlined"
-          /> */}
-          {/* <TextField
-            autowidth="true"
-            label="Any additional comments?"
-            multiline
-            rowsMax="5"
-            margin="normal"
-            onChange={this.handleChangeFor('comments')}
-            variant="outlined"
-          /> */}
           <Button type="submit" variant="outlined" color="primary">Submit</Button>
         </form>
       </div>
