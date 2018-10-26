@@ -3,9 +3,22 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "schedule"
-                RIGHT JOIN "workout" on "workout"."id"="schedule"."workout_id"
-                WHERE "user_id"=$1;`, [req.user.id])
+    pool.query(`SELECT "schedule"."id",
+    "schedule"."start_date",
+    "schedule"."end_date",
+    "schedule"."added_weight",
+    "schedule"."route_rating",
+    "schedule"."comments",
+    "schedule"."iscomplete",
+    "schedule"."workout_id",
+    "schedule"."user_id",
+    "workout"."name",
+    "workout"."on_time",
+    "workout"."off_time",
+    "workout"."rest_time"
+FROM "schedule"
+JOIN "workout" on "workout"."id"="schedule"."workout_id"
+WHERE "user_id"=$1;`, [req.user.id])
     .then(results => {
         res.send(results.rows);
     })
@@ -37,9 +50,10 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/', (req, res) => {
+    console.log(req.query);
     pool.query(`DELETE FROM "schedule"
-                WHERE "id"=$1;`, req.params.id)
+                WHERE "id"=$1;`, [req.query.id])
     .then(() => {
         res.sendStatus(200);
     })

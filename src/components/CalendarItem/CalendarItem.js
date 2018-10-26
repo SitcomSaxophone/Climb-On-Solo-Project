@@ -51,7 +51,7 @@ class CalendarItem extends Component {
 
     handleDelete = data => event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'DELETE_WORKOUT' });
+        this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data});
     }
 
     render() {
