@@ -128,7 +128,6 @@ class WorkoutList extends Component {
           /> */}
           <Button type="submit" variant="outlined" color="primary">Submit</Button>
         </form>
-        {JSON.stringify(this.props.workouts, null, 2)}
       </div>
     )
   }

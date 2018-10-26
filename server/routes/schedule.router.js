@@ -18,7 +18,8 @@ router.get('/', (req, res) => {
     "workout"."rest_time"
 FROM "schedule"
 JOIN "workout" on "workout"."id"="schedule"."workout_id"
-WHERE "user_id"=$1;`, [req.user.id])
+WHERE "user_id"=$1
+ORDER BY "schedule"."start_date";`, [req.user.id])
     .then(results => {
         res.send(results.rows);
     })
