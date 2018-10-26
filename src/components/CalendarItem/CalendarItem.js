@@ -14,6 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+import Button from '@material-ui/core/Button';
 
 class CalendarItem extends Component {
 
@@ -51,7 +52,12 @@ class CalendarItem extends Component {
 
     handleDelete = data => event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data});
+        this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data });
+    }
+
+    handleSaveCompletedWorkout = data => event => {
+        event.preventDefault();
+        console.log('clicked', data.id);
     }
 
     render() {
@@ -86,7 +92,7 @@ class CalendarItem extends Component {
                                 // onChange={this.handleChangeFor('route_rating')}
                                 variant="outlined"
                             />
-                            <br/>
+                            <br />
                             <Input
                                 autowidth="true"
                                 type="number"
@@ -94,7 +100,7 @@ class CalendarItem extends Component {
                                 // onChange={this.handleChangeFor('added_weight')}
                                 variant="outlined"
                             />
-                            <br/>
+                            <br />
                             <TextField
                                 autowidth="true"
                                 label="Any additional comments?"
@@ -115,6 +121,14 @@ class CalendarItem extends Component {
                                     }
                                     label="Complete Exercise"
                                 />
+                                <Button 
+                                    variant="contained"
+                                    color="primary"
+                                    style={{width: 40}}
+                                    onClick={this.handleSaveCompletedWorkout(this.props.date)}
+                                >
+                                    Send
+                                </Button>
                                 <FormControlLabel
                                     control={<IconButton onClick={this.handleDelete(this.props.date)}>
                                         <DeleteSharpIcon />
