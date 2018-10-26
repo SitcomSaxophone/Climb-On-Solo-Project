@@ -23,7 +23,7 @@ class CalendarItem extends Component {
         workout: {
             isComplete: false,
             comments: '',
-            added_weight: 0,
+            added_weight: null,
             route_rating: '',
         },
     };
@@ -58,7 +58,7 @@ class CalendarItem extends Component {
     handleSaveCompletedWorkout = data => event => {
         event.preventDefault();
         this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: {...this.state.workout, id: data.id}});
-        this.setState({workout:{added_weight: 0, route_rating: '', comments: ''}});
+        this.setState({workout:{added_weight: null, route_rating: '', comments: ''}});
     }
 
     render() {
@@ -115,7 +115,10 @@ class CalendarItem extends Component {
                                 value={this.state.workout.comments}
                             />
                             <FormGroup>
-                                <FormControlLabel
+                                {this.props.date.iscomplete ? (
+                                    <Typography paragraph>Workout Completed!</Typography>
+                                ) : (
+                                    <FormControlLabel
                                     control={
                                         <Checkbox
                                             checked={this.state.workout.isComplete}
@@ -125,6 +128,8 @@ class CalendarItem extends Component {
                                     }
                                     label="Complete Exercise"
                                 />
+                                )}
+                                
                                 <Button 
                                     variant="contained"
                                     color="primary"
@@ -140,7 +145,11 @@ class CalendarItem extends Component {
                                     }
                                     label="Delete Exercise"
                                 />
+                                    {this.props.date.added_weight > 0 ? (
                                     <Typography>{this.props.date.added_weight} additional lbs/kg</Typography>
+                                    ) : (
+                                        <></>
+                                    )}
                                     <Typography paragraph>{this.props.date.route_rating}</Typography>
                                     <Typography paragraph>{this.props.date.comments}</Typography>
                             </FormGroup>
