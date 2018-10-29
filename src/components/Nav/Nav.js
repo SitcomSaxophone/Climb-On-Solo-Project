@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import './climbing_image.png';
 import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
+    <img src={'./climbing_image.png'}/>
     <Link to="/home">
       <h2 className="nav-title">Climb On</h2>
     </Link>
