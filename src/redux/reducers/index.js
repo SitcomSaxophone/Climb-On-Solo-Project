@@ -5,6 +5,7 @@ import user from './userReducer';
 import schedule from './scheduleReducer';
 import workout from './workoutReducer';
 import newSchedule from './newScheduleReducer';
+import scheduleForm from './showCalendarForm';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   schedule,
   workout,
   newSchedule,
+  scheduleForm,
 });
 
 export default rootReducer;

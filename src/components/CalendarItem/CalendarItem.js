@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
 class CalendarItem extends Component {
@@ -139,7 +139,7 @@ class CalendarItem extends Component {
                                 </Button>
                                 <FormControlLabel
                                     control={<IconButton onClick={this.handleDelete(this.props.date)}>
-                                        <DeleteSharpIcon />
+                                        <DeleteIcon />
                                     </IconButton>
                                     }
                                     label="Delete Exercise"

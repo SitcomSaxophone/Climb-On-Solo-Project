@@ -31,6 +31,7 @@ class WorkoutList extends Component {
         end_time: this.props.newSchedule.endDate,
       }
     });
+    this.props.dispatch({ type: 'TOGGLE_CALENDAR_FORM' });
   }
 
   handleDateChangeFor = property => event => {
@@ -63,10 +64,6 @@ class WorkoutList extends Component {
   render() {
     return (
       <div>
-        {/* <h2>
-          Workout List
-    </h2> */}
-
         <form onSubmit={this.scheduleNewWorkout()}>
           <input
             type="date"
@@ -105,6 +102,7 @@ const mapStateToProps = state => ({
   user: state.user,
   workouts: state.workout,
   newSchedule: state.newSchedule,
+  scheduleForm: state.scheduleForm,
 })
 
 export default connect(mapStateToProps)(WorkoutList);
