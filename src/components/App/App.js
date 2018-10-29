@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Calendar from '../Calendar/Calendar';
-import SpecificWorkout from '../SpecificWorkout/SpecificWorkout';
 import WorkoutList from '../WorkoutList/WorkoutList.js';
 
 import './App.css';

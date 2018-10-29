@@ -33,6 +33,7 @@ class Calendar extends Component {
                             </IconButton>
                         }
                         label="Schedule a new Workout"
+                        style={{width: 65}}
                     />
                 </FormGroup>
                 {this.props.scheduleForm === true ? (

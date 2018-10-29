@@ -126,6 +126,7 @@ class CalendarItem extends Component {
                                         />
                                     }
                                     label="Complete Exercise"
+                                    style={{width: 60}}
                                 />
                                 )}
                                 
@@ -143,11 +144,12 @@ class CalendarItem extends Component {
                                     </IconButton>
                                     }
                                     label="Delete Exercise"
+                                    style={{width: 60}}
                                 />
                                     {this.props.date.added_weight > 0 ? (
                                     <Typography>{this.props.date.added_weight} additional lbs/kg</Typography>
                                     ) : (
-                                        <></>
+                                        null
                                     )}
                                     <Typography paragraph>{this.props.date.route_rating}</Typography>
                                     <Typography paragraph>{this.props.date.comments}</Typography>
