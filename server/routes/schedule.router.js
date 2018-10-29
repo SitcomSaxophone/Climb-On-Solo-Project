@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
     "workout"."on_time",
     "workout"."off_time",
     "workout"."rest_time"
-FROM "schedule"
-JOIN "workout" on "workout"."id"="schedule"."workout_id"
-WHERE "user_id"=$1
-ORDER BY "schedule"."start_date";`, [req.user.id])
+    FROM "schedule"
+    JOIN "workout" on "workout"."id"="schedule"."workout_id"
+    WHERE "user_id"=$1
+    ORDER BY "schedule"."start_date";`, [req.user.id])
     .then(results => {res.send(results.rows)})
     .catch(error => {
         console.log('Error making GET to database: ', error);
@@ -78,5 +78,17 @@ router.put('/', (req, res) => {
     });
 })
 
+router.get('/archive', (req, res) => {
+    pool.query(`SELECT "schedule".*, "workout"."name" FROM "schedule"
+                JOIN "workout" ON "workout"."id"="schedule"."workout_id"
+                WHERE "iscomplete"=true
+                AND "user_id"=$1
+                ORDER BY "start_date" DESC;`, [req.user.id])
+    .then(results => {res.send(results.rows)})
+    .catch(error => {
+        console.log('Error making GET to /archive: ', error);
+        res.sendStatus(500);
+    });
+})
 
 module.exports = router;
