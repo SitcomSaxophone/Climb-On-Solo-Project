@@ -16,6 +16,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Calendar from '../Calendar/Calendar';
 import WorkoutList from '../WorkoutList/WorkoutList.js';
+import Archive from '../Archive/Archive';
 
 import './App.css';
 
@@ -56,11 +57,11 @@ class App extends Component {
               path="/schedule"
               component={Calendar}
             />
-            {/* <ProtectedRoute
+            <ProtectedRoute
               exact
-              path="/specifics"
-              component={SpecificWorkout}
-            /> */}
+              path="/archive"
+              component={Archive}
+            />
             <ProtectedRoute
               exact
               path="/workouts"

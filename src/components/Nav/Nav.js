@@ -65,6 +65,15 @@ class Nav extends Component {
             <MenuItem onClick={this.handleClose}>
               {this.props.user.id && (
                 <>
+                  <Link className="nav-link" to="/archive">
+                    Archive
+              </Link>
+                </>
+              )}
+            </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              {this.props.user.id && (
+                <>
                   <LogOutButton className="nav-link" />
                 </>
               )}
