@@ -51,8 +51,11 @@ class ArchiveItem extends Component {
                             <Typography className="class-card-exercise" variant="h5">
                                 {this.props.date.name}
                             </Typography>
-                            <Typography paragraph>Workout Completed!</Typography>
-                            <Typography>{this.props.date.added_weight} additional lbs/kg</Typography>
+                            {this.props.date.added_weight > 0 ? (
+                                <Typography paragraph>{this.props.date.added_weight} additional lbs/kg</Typography>
+                            ) :(
+                                null
+                            )} 
                             <Typography paragraph>{this.props.date.route_rating}</Typography>
                             <Typography paragraph>{this.props.date.comments}</Typography>
                             <FormControlLabel
