@@ -10,6 +10,15 @@ function* fetchSchedule(action) {
     }
 }
 
+function* fetchArchive(action) {
+    try {
+        const archiveResponse = yield call(axios.get, '/api/schedule/archive', { id: action.payload });
+        yield put({ type: 'SET_ARCHIVE', payload: archiveResponse.data});
+    } catch (error) {
+        console.log('Error fetching archive: ', error);
+    }
+}
+
 function* scheduleNewWorkout(action) {
     try {
         yield call(axios.post, '/api/schedule', action.payload);
@@ -43,6 +52,7 @@ function* scheduleSaga() {
     yield takeLatest('SCHEDULE_NEW_WORKOUT', scheduleNewWorkout);
     yield takeLatest('DELETE_WORKOUT', deleteScheduledWorkout);
     yield takeLatest('UPDATE_SCHEDULE', updateScheduledWorkout);
+    yield takeLatest('FETCH_ARCHIVE', fetchArchive);
 }
 
 export default scheduleSaga;
