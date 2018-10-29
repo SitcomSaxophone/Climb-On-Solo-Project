@@ -37,6 +37,15 @@ function* deleteScheduledWorkout(action) {
     }
 }
 
+function* deleteArchivedWorkout(action) {
+    try {
+        yield call(axios.delete, '/api/schedule', { params: action.payload});
+        yield put({ type: 'FETCH_ARCHIVE'});
+    } catch(error) {
+        console.log('Error making DELETE to server: ', error);
+    }
+}
+
 function* updateScheduledWorkout(action) {
     try {
         yield console.log(action.payload);
@@ -53,6 +62,7 @@ function* scheduleSaga() {
     yield takeLatest('DELETE_WORKOUT', deleteScheduledWorkout);
     yield takeLatest('UPDATE_SCHEDULE', updateScheduledWorkout);
     yield takeLatest('FETCH_ARCHIVE', fetchArchive);
+    yield takeLatest('DELETE_ARCHIVED_WORKOUT', deleteArchivedWorkout);
 }
 
 export default scheduleSaga;

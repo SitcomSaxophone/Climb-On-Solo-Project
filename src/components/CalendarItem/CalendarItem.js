@@ -50,15 +50,15 @@ class CalendarItem extends Component {
         });
     }
 
-    handleDelete = data => event => {
-        event.preventDefault();
-        this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data });
-    }
-
     handleSaveCompletedWorkout = data => event => {
         event.preventDefault();
         this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: {...this.state.workout, id: data.id}});
         this.setState({workout:{added_weight: null, route_rating: '', comments: ''}});
+    }
+
+    handleDelete = data => event => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data });
     }
 
     render() {
