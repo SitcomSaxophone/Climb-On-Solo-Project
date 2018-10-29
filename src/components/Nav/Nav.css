@@ -4,12 +4,14 @@
     display: inline-block;
     color: #f2f2f2;
     padding-left: 10px;
+    /* text-justify: auto; */
     /* font-family: ; */
 }
 
 .nav {
   overflow: hidden;
   background-color: #6b8e23;
+  text-align: center;
 }
 
 .nav-link {
@@ -33,5 +35,13 @@
 } */
 
 .nav-right {
+  padding-top: 18px;
+  padding-right: 12px;
   float: right;
+}
+
+.nav img {
+  padding-top: 14px;
+  padding-left: 12px;
+  float: left;
 }

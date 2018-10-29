@@ -1,0 +1,15 @@
+.loginView {
+    text-align: center;
+    justify-content: center;
+    margin: 30;
+    padding: 20;
+}
+
+.loginHeader {
+    text-align: center;
+    font-size: 32;
+}
+
+.loginInput input::placeholder {
+    text-align: center;
+}

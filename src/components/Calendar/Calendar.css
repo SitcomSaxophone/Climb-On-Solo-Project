@@ -1,0 +1,8 @@
+.calendarDiv h2{
+    text-align: center
+}
+
+#addScheduleIcon {
+    float: right;
+    margin-left: 10px;
+}

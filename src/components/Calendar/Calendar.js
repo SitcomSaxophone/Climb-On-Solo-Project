@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddBox from '@material-ui/icons/AddBox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
+import './Calendar.css';
 
 class Calendar extends Component {
 
@@ -21,18 +21,18 @@ class Calendar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="calendarDiv">
                 <h2>
                     Calendar
                 </h2>
                 <FormGroup>
                     <FormControlLabel
                         control={
-                            <IconButton onClick={this.handleFormToggle}>
+                            <IconButton id="addScheduleIcon" onClick={this.handleFormToggle}>
                                 <AddBox />
                             </IconButton>
                         }
-                        label="Schedule a new Workout"
+                        label="New Workout"
                         style={{width: 65}}
                     />
                 </FormGroup>
@@ -47,7 +47,6 @@ class Calendar extends Component {
                         date={date}
                     />
                 )}
-
             </div>
         )
     }

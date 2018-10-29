@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import '../LoginPage/LoginPage.css';
 
 class RegisterPage extends Component {
   state = {
@@ -19,7 +22,7 @@ class RegisterPage extends Component {
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
 
@@ -31,7 +34,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="loginView">
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -41,11 +44,12 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1 className="loginHeader">Register User</h1>
           <div>
             <label htmlFor="username">
-              Username:
-              <input
+              <Input
+                className="loginInput"
+                placeholder="Username"
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -55,8 +59,9 @@ class RegisterPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Password:
-              <input
+              <Input
+                className="loginInput"
+                placeholder="Password"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -65,22 +70,24 @@ class RegisterPage extends Component {
             </label>
           </div>
           <div>
-            <input
+            <Button
               className="register"
               type="submit"
               name="submit"
               value="Register"
-            />
+            >
+              Register
+            </Button>
           </div>
         </form>
         <center>
-          <button
+          <Button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
           >
             Login
-          </button>
+          </Button>
         </center>
       </div>
     );
