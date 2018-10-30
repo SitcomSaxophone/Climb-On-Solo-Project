@@ -6,7 +6,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import image from './climbing (1).png';
 import './Nav.css';
 
 class Nav extends Component {
@@ -23,7 +22,7 @@ class Nav extends Component {
 
   handleClose = () => {
     this.setState({
-      anchorEl: null, 
+      anchorEl: null,
     });
   }
 
@@ -32,10 +31,7 @@ class Nav extends Component {
     return (
 
       <div className="nav">
-        <img src={image} alt="Climbing Man" />
-        <Link to="/home">
-          <h2 className="nav-title">Climb On</h2>
-        </Link>
+        <h2 className="nav-title">Climb On</h2>
         <div className="nav-right">
           <IconButton onClick={this.handleOpen}>
             <MenuIcon />

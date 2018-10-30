@@ -29,7 +29,7 @@ class ArchiveItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <Card key={this.props.date.id}>
+                <Card className="card" key={this.props.date.id}>
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}

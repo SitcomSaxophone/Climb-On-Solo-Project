@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 class WorkoutList extends Component {
 
@@ -11,7 +15,7 @@ class WorkoutList extends Component {
       user_id: this.props.user.id,
     },
     newScheduleDate: {
-      date: new Date(),
+      date: moment().format('L'),
       start_time: '',
       end_time: '',
     }
@@ -53,6 +57,16 @@ class WorkoutList extends Component {
     })
   }
 
+  handleDatePicker = date => {
+    this.setState({
+      newScheduleDate:{
+        ...this.state.newScheduleDate,
+        date: moment(date).format('L'),
+      }
+    });
+    console.log(this.state.newScheduleDate.date);
+  }
+
   handleNewDate = event => {
     event.preventDefault();
     this.props.dispatch({
@@ -65,10 +79,9 @@ class WorkoutList extends Component {
     return (
       <div>
         <form onSubmit={this.scheduleNewWorkout()}>
-          <input
-            type="date"
-            onChange={this.handleDateChangeFor('date')}
-            value={this.state.date}
+          <DatePicker
+            onChange={this.handleDatePicker}
+            select={this.state.date}
           />
           <input
             type="time"

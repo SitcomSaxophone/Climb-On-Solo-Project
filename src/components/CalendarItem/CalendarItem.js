@@ -15,6 +15,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import './CalendarItem.css';
 
 class CalendarItem extends Component {
 
@@ -64,7 +65,7 @@ class CalendarItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <Card key={this.props.date.id}>
+                <Card className="card" key={this.props.date.id}>
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}
@@ -133,10 +134,10 @@ class CalendarItem extends Component {
                                 <Button 
                                     variant="contained"
                                     color="primary"
-                                    style={{width: 40}}
+                                    style={{width: 50}}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
                                 >
-                                    Send
+                                    Archive
                                 </Button>
                                 <FormControlLabel
                                     control={<IconButton onClick={this.handleDelete(this.props.date)}>
@@ -146,13 +147,6 @@ class CalendarItem extends Component {
                                     label="Delete Exercise"
                                     style={{width: 60}}
                                 />
-                                    {this.props.date.added_weight > 0 ? (
-                                    <Typography>{this.props.date.added_weight} additional lbs/kg</Typography>
-                                    ) : (
-                                        null
-                                    )}
-                                    <Typography paragraph>{this.props.date.route_rating}</Typography>
-                                    <Typography paragraph>{this.props.date.comments}</Typography>
                             </FormGroup>
                            
                         </CardContent>
