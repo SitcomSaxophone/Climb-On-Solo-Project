@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import DatePicker from 'react-datepicker';
+import Input from '@material-ui/core/Input';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css'
@@ -77,7 +78,7 @@ class WorkoutList extends Component {
 
   render() {
     return (
-      <div>
+      <div id="workoutFormDiv">
         <form onSubmit={this.scheduleNewWorkout()}>
           <DatePicker
             onChange={this.handleDatePicker}

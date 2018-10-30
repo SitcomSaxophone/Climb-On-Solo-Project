@@ -53,8 +53,8 @@ class CalendarItem extends Component {
 
     handleSaveCompletedWorkout = data => event => {
         event.preventDefault();
-        this.props.dispatch({type: 'UPDATE_SCHEDULE', payload: {...this.state.workout, id: data.id}});
-        this.setState({workout:{added_weight: null, route_rating: '', comments: ''}});
+        this.props.dispatch({ type: 'UPDATE_SCHEDULE', payload: { ...this.state.workout, id: data.id } });
+        this.setState({ workout: { added_weight: null, route_rating: '', comments: '' } });
     }
 
     handleDelete = data => event => {
@@ -118,23 +118,23 @@ class CalendarItem extends Component {
                                 {this.props.date.iscomplete ? (
                                     <Typography paragraph>Workout Completed!</Typography>
                                 ) : (
-                                    <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={this.state.workout.isComplete}
-                                            onChange={this.handleCheck(this.props.date)}
-                                            color="primary"
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.workout.isComplete}
+                                                    onChange={this.handleCheck(this.props.date)}
+                                                    color="primary"
+                                                />
+                                            }
+                                            label="Complete Exercise"
+                                            style={{ width: 60 }}
                                         />
-                                    }
-                                    label="Complete Exercise"
-                                    style={{width: 60}}
-                                />
-                                )}
-                                
-                                <Button 
+                                    )}
+
+                                <Button
                                     variant="contained"
                                     color="primary"
-                                    style={{width: 50}}
+                                    style={{ width: 50 }}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
                                 >
                                     Archive
@@ -145,10 +145,10 @@ class CalendarItem extends Component {
                                     </IconButton>
                                     }
                                     label="Delete Exercise"
-                                    style={{width: 60}}
+                                    style={{ width: 60 }}
                                 />
                             </FormGroup>
-                           
+
                         </CardContent>
                     </Collapse>
                 </Card>
