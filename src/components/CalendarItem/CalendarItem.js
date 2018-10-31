@@ -15,7 +15,6 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import './CalendarItem.css';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -113,7 +112,7 @@ class CalendarItem extends Component {
                             <br />
                             <TextField
                                 autowidth="true"
-                                label="Any additional comments?"
+                                label="Additional comments?"
                                 multiline
                                 rowsMax="5"
                                 margin="normal"

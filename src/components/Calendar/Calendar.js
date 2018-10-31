@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import AddBox from '@material-ui/icons/AddBox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import './Calendar.css';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {

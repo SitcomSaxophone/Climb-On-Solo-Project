@@ -13,13 +13,13 @@ const styles = {
   root: {
     display: 'flex',
     backgroundColor: 'royalblue',
-    fontSize: '15vmin',
   },
   title: {
     fontSize: '10vmin',
     color: '#f2f2f2',
     margin: 'auto',
-    marginLeft: '0'
+    marginLeft: '0',
+    paddingLeft: '1vmin',
   },
   menu: {
     height: '12vmin',
@@ -28,8 +28,9 @@ const styles = {
     marginRight: '0',
   },
   icon: {
-    height: '8vmin',
-    width: '8vmin'
+    height: '9vmin',
+    width: '9vmin',
+    paddingBottom: '1vmin'
   }
 }
 

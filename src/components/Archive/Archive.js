@@ -4,7 +4,14 @@ import ArchiveItem from '../ArchiveItem/ArchiveItem';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-    
+    root: {
+        backgroundColor: '#f2f2f2',
+        textAlign: 'center',
+    },
+    title: {
+        fontSize: '6vmin',
+        marginTop: '0'
+    },
 }
 
 class Archive extends Component {
@@ -15,8 +22,8 @@ class Archive extends Component {
 
     render() {
         return (
-            <div className="calendarDiv">
-                <h2>
+            <div className={this.props.classes.root}>
+                <h2 className={this.props.classes.title}>
                     Archive
                 </h2>
                 {this.props.archive.map(date =>
