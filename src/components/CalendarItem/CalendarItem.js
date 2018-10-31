@@ -16,6 +16,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import './CalendarItem.css';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    root: {
+        backgroundColor: 'white',
+    }
+}
 
 class CalendarItem extends Component {
 
@@ -65,7 +72,7 @@ class CalendarItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <Card className="card" key={this.props.date.id}>
+                <Card className={this.props.classes.root} key={this.props.date.id}>
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}
@@ -162,4 +169,4 @@ const mapStateToProps = state => ({
     schedule: state.schedule,
 })
 
-export default connect(mapStateToProps)(CalendarItem);
+export default withStyles(styles)(connect(mapStateToProps)(CalendarItem));

@@ -7,6 +7,30 @@ import AddBox from '@material-ui/icons/AddBox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import './Calendar.css';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    root: {
+        backgroundColor: '#f2f2f2',
+        textAlign: 'center',
+    },
+    title: {
+        fontSize: '6vmin',
+        marginTop: '0'
+    },
+    iconButton: {
+        height: '10vmin',
+        width: '10vmin',
+        paddingLeft: '6vmin',
+        paddingBottom: '3vmin',
+        marginLeft: '0',
+        marginRight: '0'
+    },
+    icon: {
+        height: '7vmin',
+        width: '7vmin',
+    }
+}
 
 class Calendar extends Component {
 
@@ -21,26 +45,26 @@ class Calendar extends Component {
 
     render() {
         return (
-            <div className="calendarDiv">
-                <h2>
+            <div className={this.props.classes.root}>
+                <h2 className={this.props.classes.title}>
                     Calendar
                 </h2>
-                <FormGroup>
+                <FormGroup className={this.props.classes.iconButton}>
                     <FormControlLabel
                         control={
-                            <IconButton id="addScheduleIcon" onClick={this.handleFormToggle}>
-                                <AddBox />
+                            <IconButton  onClick={this.handleFormToggle}>
+                                <AddBox className={this.props.classes.icon}/>
                             </IconButton>
                         }
                         label="New Workout"
-                        style={{width: 65}}
+                        style={{ width: 65 }}
                     />
                 </FormGroup>
                 {this.props.scheduleForm === true ? (
                     <WorkoutList />
                 ) : (
-                    null
-                )}
+                        null
+                    )}
                 {this.props.schedule.map(date =>
                     <CalendarItem
                         key={date.id}
@@ -58,4 +82,4 @@ const mapStateToProps = state => ({
     scheduleForm: state.scheduleForm,
 })
 
-export default connect(mapStateToProps)(Calendar);
+export default withStyles(styles)(connect(mapStateToProps)(Calendar));

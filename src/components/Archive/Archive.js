@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ArchiveItem from '../ArchiveItem/ArchiveItem';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    
+}
 
 class Archive extends Component {
 
@@ -30,4 +35,4 @@ const mapStateToProps = state => ({
     archive: state.schedule,
 })
 
-export default connect(mapStateToProps)(Archive);
+export default withStyles(styles)(connect(mapStateToProps)(Archive));

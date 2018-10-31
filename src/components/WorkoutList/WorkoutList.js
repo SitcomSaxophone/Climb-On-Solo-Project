@@ -5,8 +5,15 @@ import Button from '@material-ui/core/Button';
 import DatePicker from 'react-datepicker';
 import Input from '@material-ui/core/Input';
 import moment from 'moment';
-
+import { withStyles } from '@material-ui/core/styles';
 import 'react-datepicker/dist/react-datepicker.css'
+import { isNullOrUndefined } from 'util';
+
+const styles = {
+  form: {
+    display: 'inline-block'
+  }
+}
 
 class WorkoutList extends Component {
 
@@ -78,7 +85,7 @@ class WorkoutList extends Component {
 
   render() {
     return (
-      <div id="workoutFormDiv">
+      <div className={this.props.classes.form} id="workoutFormDiv">
         <form onSubmit={this.scheduleNewWorkout()}>
           <DatePicker
             onChange={this.handleDatePicker}
@@ -119,4 +126,4 @@ const mapStateToProps = state => ({
   scheduleForm: state.scheduleForm,
 })
 
-export default connect(mapStateToProps)(WorkoutList);
+export default withStyles(styles)(connect(mapStateToProps)(WorkoutList));

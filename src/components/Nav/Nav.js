@@ -7,6 +7,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import './Nav.css';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  root: {
+    display: 'flex',
+    backgroundColor: 'royalblue',
+    fontSize: '15vmin',
+  },
+  title: {
+    fontSize: '10vmin',
+    color: '#f2f2f2',
+    margin: 'auto',
+    marginLeft: '0'
+  },
+  menu: {
+    height: '12vmin',
+    width: '12vmin',
+    align: 'right',
+    marginRight: '0',
+  },
+  icon: {
+    height: '8vmin',
+    width: '8vmin'
+  }
+}
 
 class Nav extends Component {
 
@@ -30,11 +55,11 @@ class Nav extends Component {
     const { anchorEl } = this.state;
     return (
 
-      <div className="nav">
-        <h2 className="nav-title">Climb On</h2>
-        <div className="nav-right">
-          <IconButton onClick={this.handleOpen}>
-            <MenuIcon />
+      <div className={this.props.classes.root}>
+        <h2 className={this.props.classes.title}>Climb On</h2>
+        
+          <IconButton className={this.props.classes.menu} onClick={this.handleOpen}>
+            <MenuIcon className={this.props.classes.icon}/>
           </IconButton>
           <Menu
             anchorEl={anchorEl}
@@ -80,7 +105,6 @@ class Nav extends Component {
           </Link>
             </MenuItem>
           </Menu>
-        </div >
       </div>
     )
   }
@@ -95,4 +119,4 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default withStyles(styles)(connect(mapStateToProps)(Nav));
