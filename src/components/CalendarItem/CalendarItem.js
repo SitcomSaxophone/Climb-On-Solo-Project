@@ -20,6 +20,22 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         backgroundColor: 'white',
+    },
+    listDate: {
+        paddingBottom: '0',
+    },
+    content: {
+        display: 'flex',
+        paddingTop: '0'
+    },
+    contentInput: {
+        marginLeft: '2vmin',
+        marginRight: '2vmin'
+    },
+    completionForm: {
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'row'
     }
 }
 
@@ -75,6 +91,7 @@ class CalendarItem extends Component {
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}
+                        className={this.props.classes.listDate}
                     />
                     <CardActions>
                         <IconButton
@@ -89,7 +106,7 @@ class CalendarItem extends Component {
                         </IconButton>
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                        <CardContent>
+                        <CardContent className={this.props.content}>
                             <Typography className="class-card-exercise" variant="h5">
                                 {this.props.date.name}
                             </Typography>
@@ -100,14 +117,16 @@ class CalendarItem extends Component {
                                 onChange={this.handleChangeFor('route_rating')}
                                 variant="outlined"
                                 value={this.state.workout.route_rating}
+                                className={this.props.classes.contentInput}
                             />
-                            <br />
+                            {/* <br /> */}
                             <Input
                                 autowidth="true"
                                 type="number"
                                 placeholder="Added weight (optional)"
                                 onChange={this.handleChangeFor('added_weight')}
                                 variant="outlined"
+                                className={this.props.classes.contentInput}
                             />
                             <br />
                             <TextField
@@ -120,7 +139,7 @@ class CalendarItem extends Component {
                                 variant="outlined"
                                 value={this.state.workout.comments}
                             />
-                            <FormGroup>
+                            <FormGroup className={this.props.classes.completionForm}>
                                 {this.props.date.iscomplete ? (
                                     <Typography paragraph>Workout Completed!</Typography>
                                 ) : (
@@ -133,14 +152,14 @@ class CalendarItem extends Component {
                                                 />
                                             }
                                             label="Complete Exercise"
-                                            style={{ width: 60 }}
+                                            style={{ width: 60, marginLeft: '3vmin', marginRight: '3vmin' }}
                                         />
                                     )}
 
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    style={{ width: 50 }}
+                                    style={{ width: 50, marginLeft: '3vmin', marginRight: '3vmin' }}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
                                 >
                                     Archive
@@ -151,7 +170,7 @@ class CalendarItem extends Component {
                                     </IconButton>
                                     }
                                     label="Delete Exercise"
-                                    style={{ width: 60 }}
+                                    style={{ width: 60, marginLeft: '3vmin', marginRight: '3vmin'}}
                                 />
                             </FormGroup>
 

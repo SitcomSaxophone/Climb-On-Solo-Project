@@ -1,3 +1,14 @@
+.nav-title {
+    font-size: 5vw;
+    font-weight: 700;
+    display: inline-block;
+    color: #f2f2f2;
+    padding-left: 2vw;
+    margin: auto;
+    padding-top: 1vh
+    /* font-family: ; */
+}
+
 .nav {
   overflow: hidden;
   background-color: royalblue;
