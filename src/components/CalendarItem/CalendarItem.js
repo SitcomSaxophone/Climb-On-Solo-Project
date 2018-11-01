@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -20,14 +19,16 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         backgroundColor: 'white',
+        width: '86%',
+        margin: 'auto'
     },
-    listDate: {
-        paddingBottom: '0',
+    title: {
+        paddingBottom: 0,
         fontSize: '5vmin'
     },
     content: {
         display: 'flex',
-        paddingTop: '0'
+        paddingTop: 0
     },
     contentInput: {
         marginLeft: '2vmin',
@@ -39,7 +40,11 @@ const styles = {
         justifyContent: 'center'
     },
     exercise: {
-        fontSize: '4vmax'
+        fontSize: '4.5vmin'
+    },
+    expandDiv: {
+        paddingTop: 0,
+        paddingBottom: 0
     }
 }
 
@@ -96,9 +101,9 @@ class CalendarItem extends Component {
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}
-                        className={this.props.classes.listDate}
+                        className={this.props.classes.title}
                     />
-                    <CardActions>
+                    <CardActions className={this.props.classes.expandDiv}>
                         <IconButton
                             // className={classnames(classes.expand, {
                             //     [classes.expandOpen]: this.state.expanded,
@@ -115,7 +120,7 @@ class CalendarItem extends Component {
                             <Typography className={this.props.classes.exercise} variant="h5">
                                 {this.props.date.name}
                             </Typography>
-                            <Input
+                            <TextField
                                 autowidth="true"
                                 type="text"
                                 placeholder="Route Rating (optional)"
@@ -125,7 +130,7 @@ class CalendarItem extends Component {
                                 className={this.props.classes.contentInput}
                             />
                             {/* <br /> */}
-                            <Input
+                            <TextField
                                 autowidth="true"
                                 type="number"
                                 placeholder="Added weight (optional)"
@@ -158,7 +163,7 @@ class CalendarItem extends Component {
                                             }
                                             label="Complete Exercise"
                                             style={{ 
-                                                width: 60, 
+                                                width: 50, 
                                                 marginLeft: '10vmin', 
                                                 marginRight: '10vmin',  
                                             }}
@@ -170,7 +175,7 @@ class CalendarItem extends Component {
                                     color="primary"
                                     style={{ 
                                         marginLeft: '10vmin', 
-                                        marginRight: '10vmin' 
+                                        marginRight: '10vmin',
                                     }}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
                                 >
@@ -179,12 +184,12 @@ class CalendarItem extends Component {
                                 <FormControlLabel
                                     control={
                                     <IconButton onClick={this.handleDelete(this.props.date)}>
-                                        <DeleteIcon />
+                                        <DeleteIcon style={{height: '', width: ''}}/>
                                     </IconButton>
                                     }
                                     label="Delete Exercise"
                                     style={{ 
-                                        width: 60, 
+                                        width: 50, 
                                         marginLeft: '10vmin', 
                                         marginRight: '10vmin',
                                     }}

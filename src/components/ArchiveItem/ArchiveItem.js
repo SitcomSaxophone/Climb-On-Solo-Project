@@ -10,6 +10,20 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    root: {
+        backgroundColor: 'white',
+    },
+    title: {
+        paddingBottom: 0,
+        fontSize: '5vmin'
+    },
+    exercise: {
+        fontSize: '4.5vmin'
+    },
+}
 
 class ArchiveItem extends Component {
 
@@ -48,14 +62,14 @@ class ArchiveItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography className="class-card-exercise" variant="h5">
+                            <Typography className={this.props.classes.exercise} variant="h5">
                                 {this.props.date.name}
                             </Typography>
                             {this.props.date.added_weight > 0 ? (
                                 <Typography paragraph>{this.props.date.added_weight} additional lbs/kg</Typography>
-                            ) :(
-                                null
-                            )} 
+                            ) : (
+                                    null
+                                )}
                             <Typography paragraph>{this.props.date.route_rating}</Typography>
                             <Typography paragraph>{this.props.date.comments}</Typography>
                             <FormControlLabel
@@ -74,4 +88,4 @@ class ArchiveItem extends Component {
     }
 }
 
-export default connect()(ArchiveItem);
+export default withStyles(styles)(connect()(ArchiveItem));
