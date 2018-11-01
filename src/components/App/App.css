@@ -23,6 +23,7 @@ input {
 }
 
 .container {
+    background-color: #eeeeee;
     width: 1080;
     margin: auto;
 }

@@ -15,6 +15,8 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         backgroundColor: 'white',
+        width: '86%',
+        margin: 'auto'
     },
     title: {
         paddingBottom: 0,
@@ -43,7 +45,7 @@ class ArchiveItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <Card className="card" key={this.props.date.id}>
+                <Card className={this.props.classes.root} key={this.props.date.id}>
                     <CardHeader
                         title={this.props.date.start_date}
                         subheader={this.props.date.end_date}

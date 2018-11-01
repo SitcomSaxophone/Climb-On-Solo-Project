@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        backgroundColor: '#f2f2f2',
         textAlign: 'center',
     },
     title: {
@@ -22,8 +21,8 @@ const styles = {
         width: '10vmin',
         paddingLeft: '6vmin',
         paddingBottom: '3vmin',
-        marginLeft: '0',
-        marginRight: '0'
+        marginLeft: 25,
+        marginRight: 0
     },
     icon: {
         height: '7vmin',

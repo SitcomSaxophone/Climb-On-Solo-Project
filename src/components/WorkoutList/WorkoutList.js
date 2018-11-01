@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import { InputLabel } from '@material-ui/core';
 
 const styles = {
   form: {
@@ -15,7 +16,9 @@ const styles = {
     paddingBottom: '3vmin'
   },
   input: {
-    height: 60, 
+    height: 60,
+    marginLeft: '1vmin',
+    marginRight: '1vmin'
   }
 }
 
@@ -67,8 +70,8 @@ class WorkoutList extends Component {
     this.setState({
       newWorkout: {
         ...this.state.newWorkout,
-        workout_id: Number([...event.target.selectedOptions].filter(o => o.selected).map(o => o.value)),
-        // workout_id: Number(event.target.value),
+        // workout_id: Number([...event.target.selectedOptions].filter(o => o.selected).map(o => o.value)),
+        workout_id: Number(event.target.value),
       }
     })
   }
@@ -96,6 +99,7 @@ class WorkoutList extends Component {
         <form onSubmit={this.scheduleNewWorkout()}>
           <FormControl>
             <TextField
+              required
               type="date"
               variant="outlined"
               onChange={this.handleDateChangeFor('date')}
@@ -105,6 +109,7 @@ class WorkoutList extends Component {
           </FormControl>
           <FormControl>
             <TextField
+              required
               type="time"
               onChange={this.handleDateChangeFor('start_time')}
               value={this.state.newScheduleDate.start_time}
@@ -115,6 +120,7 @@ class WorkoutList extends Component {
           </FormControl>
           <FormControl>
             <TextField
+              required
               type="time"
               onChange={this.handleDateChangeFor('end_time')}
               onBlur={this.handleNewDate}
@@ -124,35 +130,39 @@ class WorkoutList extends Component {
               className={this.props.classes.input}
             />
           </FormControl>
-          <FormControl>
+          <FormControl required variant="outlined">
             <InputLabel
               ref={ref => {
                 this.InputLabelRef = ref;
               }}
               htmlFor="outlined-workout-simple"
-            >
-               Select a Workout
-          </InputLabel>
+            >Select a Workout</InputLabel>
             <Select
-              native={true}
+              value={this.state.newWorkout.workout_id}
               onChange={this.handleSelectChange}
               input={
                 <OutlinedInput
                   labelWidth={this.state.labelWidth}
                 />}
+              className={this.props.classes.input}
+              style={{width: 200}}
             >
-              <option value=""></option>
               {this.props.workouts.map(workout => (
-                <option
+                <MenuItem
                   key={workout.id}
                   value={workout.id}
                 >
                   {workout.name}
-                </option>))}
+                </MenuItem>))}
             </Select>
           </FormControl>
-
-          <Button type="submit" variant="outlined" color="primary">Submit</Button>
+          <Button
+            type="submit"
+            variant="outlined"
+            style={{ height: 40 }}
+          >
+            Submit
+          </Button>
         </form>
       </div>
     )

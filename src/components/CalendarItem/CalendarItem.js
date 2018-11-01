@@ -32,7 +32,8 @@ const styles = {
     },
     contentInput: {
         marginLeft: '2vmin',
-        marginRight: '2vmin'
+        marginRight: '2vmin',
+        height: 60
     },
     completionForm: {
         display: 'flex',
@@ -45,6 +46,11 @@ const styles = {
     expandDiv: {
         paddingTop: 0,
         paddingBottom: 0
+    },
+    icon: {
+        width: 50,
+        marginLeft: '10vmin',
+        marginRight: '10vmin',
     }
 }
 
@@ -148,6 +154,7 @@ class CalendarItem extends Component {
                                 onChange={this.handleChangeFor('comments')}
                                 variant="outlined"
                                 value={this.state.workout.comments}
+                                className={this.props.classes.contentInput}
                             />
                             <FormGroup className={this.props.classes.completionForm}>
                                 {this.props.date.iscomplete ? (
@@ -159,22 +166,19 @@ class CalendarItem extends Component {
                                                     checked={this.state.workout.isComplete}
                                                     onChange={this.handleCheck(this.props.date)}
                                                     color="primary"
+                                                    style={{ height: 34, width: 34 }}
                                                 />
                                             }
                                             label="Complete Exercise"
-                                            style={{ 
-                                                width: 50, 
-                                                marginLeft: '10vmin', 
-                                                marginRight: '10vmin',  
-                                            }}
+                                            className={this.props.classes.icon}
                                         />
                                     )}
 
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    style={{ 
-                                        marginLeft: '10vmin', 
+                                    style={{
+                                        marginLeft: '10vmin',
                                         marginRight: '10vmin',
                                     }}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
@@ -183,16 +187,12 @@ class CalendarItem extends Component {
                                 </Button>
                                 <FormControlLabel
                                     control={
-                                    <IconButton onClick={this.handleDelete(this.props.date)}>
-                                        <DeleteIcon style={{height: '', width: ''}}/>
-                                    </IconButton>
+                                        <IconButton onClick={this.handleDelete(this.props.date)}>
+                                            <DeleteIcon style={{ height: 34, width: 34 }} />
+                                        </IconButton>
                                     }
                                     label="Delete Exercise"
-                                    style={{ 
-                                        width: 50, 
-                                        marginLeft: '10vmin', 
-                                        marginRight: '10vmin',
-                                    }}
+                                    className={this.props.classes.icon}
                                 />
                             </FormGroup>
 

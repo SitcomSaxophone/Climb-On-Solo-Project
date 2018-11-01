@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        backgroundColor: '#f2f2f2',
         textAlign: 'center',
     },
     title: {

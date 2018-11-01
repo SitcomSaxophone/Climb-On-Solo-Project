@@ -12,7 +12,7 @@ import './Nav.css';
 const styles = {
   root: {
     display: 'flex',
-    backgroundColor: 'royalblue',
+    backgroundColor: '#13a052',
   },
   title: {
     fontSize: '10vmin',
@@ -31,6 +31,9 @@ const styles = {
     height: '9vmin',
     width: '9vmin',
     paddingBottom: '1vmin'
+  },
+  button: {
+    
   }
 }
 
