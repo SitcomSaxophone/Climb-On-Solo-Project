@@ -23,6 +23,7 @@ const styles = {
     },
     listDate: {
         paddingBottom: '0',
+        fontSize: '5vmin'
     },
     content: {
         display: 'flex',
@@ -33,9 +34,12 @@ const styles = {
         marginRight: '2vmin'
     },
     completionForm: {
-        textAlign: 'center',
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    exercise: {
+        fontSize: '4vmax'
     }
 }
 
@@ -85,6 +89,7 @@ class CalendarItem extends Component {
     }
 
     render() {
+        // const { classes } = this.props;
         return (
             <React.Fragment>
                 <Card className={this.props.classes.root} key={this.props.date.id}>
@@ -107,7 +112,7 @@ class CalendarItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent className={this.props.content}>
-                            <Typography className="class-card-exercise" variant="h5">
+                            <Typography className={this.props.classes.exercise} variant="h5">
                                 {this.props.date.name}
                             </Typography>
                             <Input
@@ -152,25 +157,37 @@ class CalendarItem extends Component {
                                                 />
                                             }
                                             label="Complete Exercise"
-                                            style={{ width: 60, marginLeft: '3vmin', marginRight: '3vmin' }}
+                                            style={{ 
+                                                width: 60, 
+                                                marginLeft: '10vmin', 
+                                                marginRight: '10vmin',  
+                                            }}
                                         />
                                     )}
 
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    style={{ width: 50, marginLeft: '3vmin', marginRight: '3vmin' }}
+                                    style={{ 
+                                        marginLeft: '10vmin', 
+                                        marginRight: '10vmin' 
+                                    }}
                                     onClick={this.handleSaveCompletedWorkout(this.props.date)}
                                 >
                                     Archive
                                 </Button>
                                 <FormControlLabel
-                                    control={<IconButton onClick={this.handleDelete(this.props.date)}>
+                                    control={
+                                    <IconButton onClick={this.handleDelete(this.props.date)}>
                                         <DeleteIcon />
                                     </IconButton>
                                     }
                                     label="Delete Exercise"
-                                    style={{ width: 60, marginLeft: '3vmin', marginRight: '3vmin'}}
+                                    style={{ 
+                                        width: 60, 
+                                        marginLeft: '10vmin', 
+                                        marginRight: '10vmin',
+                                    }}
                                 />
                             </FormGroup>
 
