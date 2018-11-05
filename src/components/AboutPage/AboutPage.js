@@ -9,7 +9,7 @@ const AboutPage = () => (
   <div>
     <div>
       <p>
-        Icons made by <a 
+        {/* Icons made by <a 
           href="http://www.freepik.com" 
           title="Freepik">Freepik
         </a> from <a 
@@ -21,7 +21,7 @@ const AboutPage = () => (
           target="_blank"
           rel="noopener noreferrer"
           >CC 3.0 BY
-        </a>
+        </a> */}
       </p>
     </div>
   </div>

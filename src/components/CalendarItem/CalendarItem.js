@@ -67,10 +67,12 @@ class CalendarItem extends Component {
     };
 
     handleExpandClick = () => {
+        // switch 'expanded' boolean value on button click
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
     handleCheck = data => event => {
+        // switch 'isComplete' boolean value on checkbox click
         this.setState({
             workout: {
                 ...this.state.workout,
@@ -80,6 +82,7 @@ class CalendarItem extends Component {
     }
 
     handleChangeFor = property => event => {
+        // set values of state.workout properties upon enter text in inputs
         this.setState({
             workout: {
                 ...this.state.workout,
@@ -90,17 +93,19 @@ class CalendarItem extends Component {
 
     handleSaveCompletedWorkout = data => event => {
         event.preventDefault();
+        // dipatch database update action to scheduleSaga.js
         this.props.dispatch({ type: 'UPDATE_SCHEDULE', payload: { ...this.state.workout, id: data.id } });
+        // empty inputs upon submission of update information
         this.setState({ workout: { added_weight: null, route_rating: '', comments: '' } });
     }
 
     handleDelete = data => event => {
         event.preventDefault();
+        // dispatch database delete action to scheduleSaga.js
         this.props.dispatch({ type: 'DELETE_WORKOUT', payload: data });
     }
 
     render() {
-        // const { classes } = this.props;
         return (
             <React.Fragment>
                 <Card className={this.props.classes.root} key={this.props.date.id}>
@@ -111,9 +116,6 @@ class CalendarItem extends Component {
                     />
                     <CardActions className={this.props.classes.expandDiv}>
                         <IconButton
-                            // className={classnames(classes.expand, {
-                            //     [classes.expandOpen]: this.state.expanded,
-                            // })}
                             onClick={this.handleExpandClick}
                             aria-expanded={this.state.expanded}
                             aria-label="Show more"
@@ -123,7 +125,7 @@ class CalendarItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent className={this.props.content}>
-                            <Typography className={this.props.classes.exercise} variant="h5">
+                            <Typography className={this.props.classes.exercise}>
                                 {this.props.date.name}
                             </Typography>
                             <TextField
@@ -135,7 +137,6 @@ class CalendarItem extends Component {
                                 value={this.state.workout.route_rating}
                                 className={this.props.classes.contentInput}
                             />
-                            {/* <br /> */}
                             <TextField
                                 autowidth="true"
                                 type="number"
@@ -157,23 +158,18 @@ class CalendarItem extends Component {
                                 className={this.props.classes.contentInput}
                             />
                             <FormGroup className={this.props.classes.completionForm}>
-                                {this.props.date.iscomplete ? (
-                                    <Typography paragraph>Workout Completed!</Typography>
-                                ) : (
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    checked={this.state.workout.isComplete}
-                                                    onChange={this.handleCheck(this.props.date)}
-                                                    color="primary"
-                                                    style={{ height: 34, width: 34 }}
-                                                />
-                                            }
-                                            label="Complete Exercise"
-                                            className={this.props.classes.icon}
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={this.state.workout.isComplete}
+                                            onChange={this.handleCheck(this.props.date)}
+                                            color="primary"
+                                            style={{ height: 34, width: 34 }}
                                         />
-                                    )}
-
+                                    }
+                                    label="Complete Exercise"
+                                    className={this.props.classes.icon}
+                                />
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -195,7 +191,6 @@ class CalendarItem extends Component {
                                     className={this.props.classes.icon}
                                 />
                             </FormGroup>
-
                         </CardContent>
                     </Collapse>
                 </Card>

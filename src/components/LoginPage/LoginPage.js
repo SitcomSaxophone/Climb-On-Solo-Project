@@ -55,6 +55,7 @@ class LoginPage extends Component {
                   name="username"
                   value={this.state.username}
                   onChange={this.handleInputChangeFor('username')}
+                  variant="outlined"
                 />
               </label>
             </div>
@@ -67,6 +68,7 @@ class LoginPage extends Component {
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
+                  variant="outlined"
                 />
               </label>
             </div>

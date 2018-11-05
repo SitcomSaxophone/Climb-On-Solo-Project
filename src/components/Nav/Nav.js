@@ -40,15 +40,17 @@ const styles = {
 class Nav extends Component {
 
   state = {
-    anchorEl: null,
+    anchorEl: null, 
   }
 
+  // open menu element
   handleOpen = event => {
     this.setState({
       anchorEl: event.currentTarget,
     });
   }
 
+  // close menu element
   handleClose = () => {
     this.setState({
       anchorEl: null,
@@ -67,8 +69,8 @@ class Nav extends Component {
           </IconButton>
           <Menu
             anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
+            open={Boolean(anchorEl)} // set open prop to boolean value of anchorEl
+            onClose={this.handleClose} // close menu when option chosen or menu clicked on again
           >
             <MenuItem onClick={this.handleClose}>
               <Link className="nav-link" to="/home">
@@ -102,11 +104,6 @@ class Nav extends Component {
                   <LogOutButton className="nav-link" />
                 </>
               )}
-            </MenuItem>
-            <MenuItem onClick={this.handleClose}>
-              <Link className="nav-link" to="/about">
-                About
-          </Link>
             </MenuItem>
           </Menu>
       </div>

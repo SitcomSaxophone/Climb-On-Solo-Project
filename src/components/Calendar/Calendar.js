@@ -32,7 +32,8 @@ const styles = {
 
 class Calendar extends Component {
 
-    componentDidMount() {
+    // dispatch a fetch action to the scheduleSaga.js file
+    componentDidMount() { 
         this.props.dispatch({ type: 'FETCH_SCHEDULE', payload: this.props.user.id });
     }
 
@@ -45,7 +46,7 @@ class Calendar extends Component {
         return (
             <div className={this.props.classes.root}>
                 <h2 className={this.props.classes.title}>
-                    Calendar
+                    Schedule
                 </h2>
                 <FormGroup className={this.props.classes.iconButton}>
                     <FormControlLabel
@@ -58,13 +59,15 @@ class Calendar extends Component {
                         style={{ width: 65 }}
                     />
                 </FormGroup>
+                {/* render inputs for adding new scheduled exercise if scheduleform state === true */}
                 {this.props.scheduleForm === true ? (
                     <WorkoutList />
                 ) : (
                         null
                     )}
+                    {/* map through the returned array of completed workout history */}
                 {this.props.schedule.map(date =>
-                    <CalendarItem
+                    <CalendarItem // individual scheduled exercise card
                         key={date.id}
                         date={date}
                     />

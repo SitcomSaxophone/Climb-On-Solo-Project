@@ -16,10 +16,10 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
-  schedule,
-  workout,
-  newSchedule,
-  scheduleForm,
+  schedule, // contains arrays of both complete and incomplete exercises
+  workout, // contains array of different workouts from the database
+  newSchedule, // returns formatted dates and times to be added to the database
+  scheduleForm, // returns toggle value for displaying the exercise scheduling inputs
 });
 
 export default rootReducer;

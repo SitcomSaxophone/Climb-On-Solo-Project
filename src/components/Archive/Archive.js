@@ -15,6 +15,7 @@ const styles = {
 
 class Archive extends Component {
 
+    // dispatch a fetch action to the scheduleSaga.js file 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_ARCHIVE', payload: this.props.user.id });
     }
@@ -25,8 +26,9 @@ class Archive extends Component {
                 <h2 className={this.props.classes.title}>
                     Archive
                 </h2>
+                {/* map through the returned array of completed workout history */}
                 {this.props.archive.map(date =>
-                    <ArchiveItem
+                    <ArchiveItem // individual archived schedule date card
                         key={date.id}
                         date={date}
                     />

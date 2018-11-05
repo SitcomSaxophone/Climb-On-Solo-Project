@@ -30,15 +30,17 @@ const styles = {
 class ArchiveItem extends Component {
 
     state = {
-        expanded: false,
+        expanded: false, // state property necessary for expanding card
     }
 
     handleExpandClick = () => {
+        // switch 'expanded' boolean value on button click
         this.setState(state => ({ expanded: !state.expanded }));
     }
 
     handleDelete = data => event => {
         event.preventDefault();
+        // dispatch DELETE action to scheduleSaga.js
         this.props.dispatch({ type: 'DELETE_ARCHIVED_WORKOUT', payload: data });
     }
 
@@ -52,9 +54,6 @@ class ArchiveItem extends Component {
                     />
                     <CardActions>
                         <IconButton
-                            // className={classnames(classes.expand, {
-                            //     [classes.expandOpen]: this.state.expanded,
-                            // })}
                             onClick={this.handleExpandClick}
                             aria-expanded={this.state.expanded}
                             aria-label="Show more"
@@ -64,7 +63,7 @@ class ArchiveItem extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography className={this.props.classes.exercise} variant="h5">
+                            <Typography className={this.props.classes.exercise}>
                                 {this.props.date.name}
                             </Typography>
                             {this.props.date.added_weight > 0 ? (
