@@ -36,15 +36,15 @@ CREATE TABLE "schedule" (
 );
  ```
  ## Built With
- React
- Redux 
- Redux Saga
- Postgresql
- Node.js
- Express
- Passport
- [Moment.js] (https://momentjs.com/) - Used to format dates and times
- [Material-UI] (https://material-ui.com/) - Used for styling
+ * React
+ * Redux 
+ * Redux Saga
+ * Postgresql
+ * Node.js
+ * Express
+ * Passport
+ * [Moment.js] (https://momentjs.com/) - Used to format dates and times
+ * [Material-UI] (https://material-ui.com/) - Used for styling
  
 ## Authors
 
