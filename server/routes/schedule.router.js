@@ -3,6 +3,8 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
+    // select the information from both workout and schedule table
+    // not using * because the primary id for the scheduled dates is required
     pool.query(`SELECT "schedule"."id",
     "schedule"."start_date",
     "schedule"."end_date",
@@ -29,6 +31,7 @@ ORDER BY "schedule"."start_date";`, [req.user.id])
 
 router.post('/', (req, res) => {
     let workout = req.body;
+    // insert information into the schedule table
     pool.query(`INSERT INTO "schedule"("start_date", "end_date", "added_weight", "route_rating", "comments", "workout_id", "user_id")
                 VALUES($1, $2, $3, $4, $5, $6, $7);`,
         [
@@ -48,6 +51,7 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
+    // delete selected date from the schedule table
     pool.query(`DELETE FROM "schedule"
                 WHERE "id"=$1;`, [req.query.id])
         .then(() => { res.sendStatus(200) })
@@ -58,6 +62,7 @@ router.delete('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
+    // update information in the schedule table upon completion of the workout
     pool.query(`UPDATE "schedule"
                 SET "added_weight"=$1, 
                 "route_rating"=$2, 
@@ -79,6 +84,7 @@ router.put('/', (req, res) => {
 })
 
 router.get('/archive', (req, res) => {
+    // select the completed dates and corresponding workout from the schedule table
     pool.query(`SELECT "schedule".*, "workout"."name" FROM "schedule"
                 JOIN "workout" ON "workout"."id"="schedule"."workout_id"
                 WHERE "iscomplete"=true
