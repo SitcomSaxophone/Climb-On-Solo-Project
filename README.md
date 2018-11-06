@@ -35,5 +35,21 @@ CREATE TABLE "schedule" (
 	user_id INTEGER references "user"
 );
  ```
+ ## Built With
+ React
+ Redux 
+ Redux Saga
+ Postgresql
+ Node.js
+ Express
+ Passport
+ [Moment.js] (https://momentjs.com/) - Used to format dates and times
+ [Material-UI] (https://material-ui.com/) - Used for styling
  
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+## Authors
+
+* **Samuel Solberg**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
